@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maximumWealth(vector<vector<int>>& accounts) {
+        
+        vector<int> a;
+        
+        ///cout << typeid(accounts).name() << endl;
+        for(vector<int> x: accounts)
+        {
+            int sum=0;
+            for(int y:x)
+            {
+                sum+=y;
+            }
+            a.push_back(sum);
+            
+        }
+        
+    int c= *max_element(a.begin(), a.end());
+        cout<<c;
+        
+        return c;
+    }
+};

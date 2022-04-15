@@ -1,0 +1,25 @@
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+       vector<char> r;
+        int i;
+        for(i=0; i<s.size(); i++)
+        {
+            
+        }
+        for(int j=i-1; j>=0; j--)
+        {
+          r.push_back(s[j]);
+            
+        }
+        //r.push_back('\0');
+        /*for(int j=0; j<s.size(); j++)
+        {
+          cout<<r[j];
+            
+        }*/
+        
+        s=r;
+    
+    }
+};
