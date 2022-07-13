@@ -1,0 +1,52 @@
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        
+        
+        sort(nums);
+        
+        return nums;
+        
+    }
+    
+    void insert(vector<int> &nums, int temp)
+    {
+        //base
+        if(nums.size()==0 or nums[nums.size()-1]<=temp)
+        {
+            nums.push_back(temp);
+            return;
+        }
+        
+        //recursive
+        int val = nums[nums.size()-1];
+         nums.pop_back();
+        insert(nums, temp);
+        nums.push_back(val);
+        
+        
+        return;
+        
+    }
+    
+    void sort(vector<int> &nums)
+    {
+        //base
+        if(nums.size()==1)
+        {
+            return;
+        }
+        
+        
+        //recursive
+        int temp = nums[nums.size()-1];
+         nums.pop_back();
+        sort(nums);
+        insert(nums, temp);
+        
+        return;
+        
+    }
+    
+    
+};

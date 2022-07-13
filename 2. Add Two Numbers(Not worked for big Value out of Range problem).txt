@@ -1,0 +1,95 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+        stack<int> st;
+        
+        ListNode* p, *q;
+        
+        p=l1;
+        q=l2;
+        
+        while(p)
+        {
+            st.push(p->val);
+            p=p->next;
+        }
+long double   sum=0;
+        while(!st.empty())
+        {
+            int no = st.top();
+            sum = sum*10 + no;
+            st.pop();
+            
+        }
+        
+        
+         while(q)
+        {
+            st.push(q->val);
+            q=q->next;
+        }
+        
+       long double   sum1=0;
+        while(!st.empty())
+        {
+            int no = st.top();
+            sum1 = sum1*10 + no;
+            st.pop();
+            
+        }
+        
+   long long int  finalsum = sum + sum1;
+        
+        
+     // cout<<finalsum;
+        
+      //  finalsum = (long long int)(finalsum);
+        
+        string s = to_string(finalsum);
+        
+        ListNode* root, *t, *last;
+        
+        root=NULL;
+        
+        
+        
+      for(auto it=s.rbegin(); it!=s.rend(); it++)
+      {
+          int x = *it - 48;
+        // cout<<x;
+          t = new ListNode;
+          if(root == NULL)
+          {
+              root =t;
+              t->val = x;
+              t->next = NULL;
+              last=root;
+          }
+          else
+          {
+              t->val = x;
+              t->next = NULL;
+              last->next = t;
+              last=t;
+          }
+      }
+    
+        
+            
+        
+        
+          
+        return root;
+    }
+};

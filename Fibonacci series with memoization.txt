@@ -1,0 +1,54 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+int F[10];
+
+int fib(int x)
+{
+    if(x<=1)
+    {
+        F[x]=x;
+        return x;
+        
+    }
+    else
+    {
+        if(F[x-2]==-1)
+        {
+            F[x-2]=fib(x-2);
+        }
+        
+        if(F[x-1]==-1)
+        {
+            F[x-1]=fib(x-1);
+        }
+        
+        F[x] = F[x-2]+F[x-1];
+        return F[x];
+    }
+    
+}
+
+
+int main()
+{
+   int x=5;
+   for(int i=0;i<10;i++)
+      F[i]=-1;
+   
+   cout<<fib(5);
+   
+   
+   
+
+    return 0;
+}
