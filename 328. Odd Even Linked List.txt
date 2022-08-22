@@ -1,0 +1,61 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    pair<ListNode*,ListNode*> LinkedList(pair<ListNode*,ListNode*> p)
+   {
+       if((p.first==NULL or p.first->next == NULL) or (p.second==NULL or p.second->next == NULL)  )
+       {
+         //     cout<<p.first->val<<" "<<endl;
+         // cout<<p.second->val<<" "<<endl;
+           p.first->next = NULL;
+           return {p.first, p.second};
+       }
+     
+       
+        // p.first->next, p.second->next = LinkedList(p.first->next->next, p.second->next->next);
+       auto [a, b]= LinkedList({p.first->next->next, p.second->next->next});
+         
+       p.first->next = a;
+       p.second->next = b;
+       // cout<<p.first->val<<" "<<endl;
+       //   cout<<p.second->val<<" "<<endl;
+       return {p.first, p.second};
+       
+   }
+    
+    ListNode* oddEvenList(ListNode* head) {
+       
+         if(head==NULL)
+         {
+             return head;
+         }
+         ListNode *odd = head, *even = head->next;
+        pair<ListNode*,ListNode*> p  =  LinkedList({odd, even});
+        //cout<<p.first->val;
+        ListNode* temp1 = p.first;
+     
+        
+        while( p.first->next)
+        {
+            cout<<p.second->val;
+           p.first = p.first->next;
+        }
+        
+        p.first->next = p.second;
+        return temp1;
+    }
+    
+   
+   
+
+
+};

@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int findCenter(vector<vector<int>>& edges) {
+        int m = edges.size();
+        
+        int node = 0; //total no of nodes in graph
+        for(int i=0; i<m; i++)
+        {
+            node = max (node, max(edges[i][0], edges[i][1]));
+        }
+        
+        vector<int> indegree(node+1);
+        
+        for(int i=0; i<m; i++)
+        {
+            indegree[edges[i][0]]++;
+            indegree[edges[i][1]]++;
+        }
+        
+        int ans=0;
+         for(int i=0; i<indegree.size(); i++)
+        {
+           if(indegree[i]==node-1)
+           {
+               ans = i;
+               break;
+           }
+        }
+        
+        
+        return ans;
+        
+    }
+};

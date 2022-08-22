@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        
+        
+        unordered_map<int, int> m;
+        bool flag = false;
+        for(auto e : nums)
+        {
+            if(m[e]>0)
+            {
+                flag = true; 
+            }
+             m[e]++;
+        }
+        
+        return flag;
+    }
+};

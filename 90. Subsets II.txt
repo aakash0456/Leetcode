@@ -1,0 +1,40 @@
+class Solution {
+public:
+    
+    vector<vector<int>> ans; 
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        
+        
+         vector<int> op;
+     //bool visited[N];
+        sort(nums.begin(), nums.end());
+    find_SumSubsets(nums,  0 ,  op);
+        
+        return ans;
+    }
+    
+    void find_SumSubsets(vector<int> arr, int i, vector<int>& op)
+{
+    //base
+    if(i==arr.size())
+    {
+        ans.push_back(op);
+        return;
+    }
+    
+         op.push_back(arr[i]);
+        find_SumSubsets(arr, i+1, op);
+     
+        op.pop_back();
+        while(i+1 < arr.size() and arr[i]==arr[i+1])
+        {
+            i=i+1;
+        }
+        
+        find_SumSubsets(arr, i+1, op);
+   
+    return;
+}
+    
+    
+};

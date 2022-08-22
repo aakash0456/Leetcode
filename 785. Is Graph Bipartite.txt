@@ -1,0 +1,45 @@
+
+class Solution {
+   
+public:
+    
+     //const int N = 10e+5;
+    bool vis[1000000];
+    bool isBipartite(vector<vector<int>>& graph) {
+       int n = graph.size(); 
+        
+       vector<int> color(n, -1);
+        bool check = true;
+        for(int i=0; i<n; i++)
+        {
+              check &= dfs(graph, i, color, 0, check);
+        }
+         
+        return check;
+    }
+    
+   bool dfs(vector<vector<int>>& graph, int i, vector<int> color, int c, bool check)
+     {
+         vis[i] = true;
+         color[i] = c;
+         
+         for(auto child : graph[i])
+         {
+             if(color[child]==color[i])
+             {
+                 cout<<"xxx";
+                 return false;
+             }
+             
+             if(!vis[child])
+             {
+                 check &= dfs(graph, child, color, !c, check);
+             }    
+             
+         }
+         
+         return  check;
+     }
+    
+    
+};

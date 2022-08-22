@@ -1,0 +1,94 @@
+    class node
+    {
+      public:
+        int x,y,time;
+        node(int x, int y, int time)
+        {
+            this->x = x;
+            this->y = y;
+            this->time = time;
+        }
+    };
+
+        
+    // struct node
+    // {
+    //   //public:
+    //     int x,y,time;
+    //     node(int x, int y, int time)
+    //     {
+    //         this->x = x;
+    //         this->y = y;
+    //         this->time = time;
+    //     }
+    // };
+        
+
+
+class Solution {
+    public:
+int orangesRotting(vector<vector<int>>& grid) {
+        int m = grid.size();
+        int n =grid[0].size();
+        queue<node> q;
+        int countOrange =0 ;
+        for(int i=0; i<m; i++)
+        {
+            for(int j=0; j<n ; j++)
+            {
+                if(grid[i][j]==2)
+                {
+                    q.push(node(i,j,0));
+                }
+                
+                if(grid[i][j]==1 )
+                {
+                    countOrange++;
+                }
+            }
+        }
+    
+    cout<<countOrange;
+            
+        int count =0;
+        int ans=0;
+        while(!q.empty())
+        {
+            int x = q.front().x;
+            int y = q.front().y;
+             int time = q.front().time;
+            q.pop();
+            ans = max(ans, time);
+            count++;
+            int dx[] = {-1,0,+1,0};
+            int dy[] = {0,1,0,-1};
+            //int new_x, new_y;
+            for(int idx = 0; idx<4; idx++)
+            {
+                int new_x = x + dx[idx];
+                int new_y = y + dy[idx];
+                
+                if(new_x>=0 && new_x<m && new_y>=0 && new_y<n && grid[new_x][new_y]==1 )
+                {
+                    grid[new_x][new_y]=2;
+                    countOrange--;
+                    q.push(node(new_x, new_y, time+1));
+                     
+                }
+                
+            }
+            
+        }
+    
+    cout<<countOrange;
+    if(countOrange>0)
+    {
+        return -1;
+    }
+    else
+    {
+        return ans;
+    }
+        
+    }
+};

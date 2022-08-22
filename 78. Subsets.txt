@@ -1,0 +1,31 @@
+class Solution {
+     vector<vector<int>> ans;
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+       vector<int> r;
+    
+         findsubsets(nums, 0, r);
+        
+   
+    return ans;
+        
+    }
+   void findsubsets(vector<int> &nums, int i , vector<int> &r)
+   {
+       if(i==nums.size())
+       {
+           ans.push_back(r);
+           return;
+       }
+       
+       r.push_back(nums[i]);
+       findsubsets(nums, i+1, r);
+       r.pop_back();
+       findsubsets(nums, i+1, r);
+       
+       return ;
+   }
+
+
+   
+};

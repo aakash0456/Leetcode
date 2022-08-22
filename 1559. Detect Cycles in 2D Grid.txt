@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+int dx[4] = {-1,0,1,0};
+int dy[4] = {0, 1, 0,-1};
+
+bool dfs(vector<vector<char>> &grid, int i, int j, int m, int n,  vector<vector<bool>> &vis, int prev_i, int prev_j)
+{
+    vis[i][j] = true;
+    
+   
+    for(int idx = 0; idx<4; idx++)
+    {
+        int ni = i + dx[idx];
+        int nj = j + dy[idx];
+        
+        if(ni>=0 and ni<m and nj>=0 and nj<n and grid[ni][nj]==grid[i][j]  and !(prev_i==ni and prev_j==nj))
+        {
+            if( vis[ni][nj] or dfs(grid, ni, nj, m ,n, vis, i, j))
+            {
+                return true;
+            }
+            
+        }
+        
+    }
+    
+    return false;
+}
+
+bool containsCycle(vector<vector<char>> grid) {
+    
+    int m = grid.size();
+    int n = grid[0].size();
+    vector<vector<bool>> vis(m, vector<bool>(n,false));
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n;j++)
+        {
+            if(!vis[i][j])
+            {
+                if(dfs(grid, i, j, m, n, vis, -1, -1))
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    
+    return false;
+    
+}
