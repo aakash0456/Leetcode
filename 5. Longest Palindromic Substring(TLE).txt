@@ -1,0 +1,35 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int n = s.size();
+        string ans; "";
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                string str ="";
+                for(int k=i; k<=j; k++){
+                    str+=s[k];
+                    cout<<str<<" ";
+                    if(isPal(str)){
+                        if(str.length() > ans.length()){
+                            ans = str;
+                           // cout<<ans<<" ";
+                        }
+                    } 
+                }    
+            }
+        }
+        return ans;
+    }
+    
+    bool isPal(string str){
+        
+        for(int i=0, j=str.length()-1; i<=j; i++, j--){
+            
+            if(str[i]!=str[j]){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+};

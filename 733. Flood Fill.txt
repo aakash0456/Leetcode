@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        
+        dfs(image,sr, sc, color, image[sr][sc]);
+        
+        return image;
+    }
+    
+    bool check(vector<vector<int>>& image, int i, int j){
+        if(i>=0 and i<image.size() and j>=0 and j<image[0].size()){
+            return true;
+        }
+        
+        return false;
+    }
+    
+    void dfs(vector<vector<int>>& image, int i, int j, int &c, int x){
+        if(!check(image,i,j)) return;
+        if(image[i][j]==c or image[i][j]!=x) return;
+        image[i][j] = c;
+        int dx[] = {-1,0,1,0};
+        int dy[] = {0,1,0,-1};
+        for(int k=0; k<4; k++){
+            int new_x = i+ dx[k];
+            int new_y = j+ dy[k];
+            
+            dfs(image, new_x, new_y, c, x);
+        }
+        
+        
+        return;
+        
+    }
+};

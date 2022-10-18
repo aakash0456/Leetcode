@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int mostFrequentEven(vector<int>& nums) {
+        
+        unordered_map<int, int> m;
+        
+        for(auto n :  nums){
+            if(n%2==0){
+                m[n]++;
+            }
+        }
+        if(m.empty()) return -1;
+        int no = 0;
+        int maxcount = INT_MIN;
+        for(auto pr :  m){
+            if(pr.second>maxcount){
+                maxcount = pr.second;
+                 no = pr.first;
+            }
+            else if(pr.second==maxcount){
+                if(pr.first<no) no = pr.first;
+            }
+        }
+        
+        return no;
+        
+    }
+};

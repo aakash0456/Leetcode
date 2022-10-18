@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        
+      multiset<pair<int, int>> m;
+        
+      for(int i=0; i<arr.size(); i++)
+      {
+          int key = abs(arr[i]-x);
+          int val = arr[i];
+          
+          m.insert({key, val});
+          if(i>=k)
+          {
+              m.erase(--m.end());
+          }
+          
+          
+      }
+        
+        
+        vector<int> ans;
+        
+        for(auto pr : m)
+        {
+            ans.push_back(pr.second);
+        }
+        
+        sort(ans.begin(), ans.end());
+        
+        
+        return ans;
+    }
+};

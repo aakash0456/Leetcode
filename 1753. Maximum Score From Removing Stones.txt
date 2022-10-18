@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int maximumScore(int a, int b, int c) {
+    multiset<int> s;
+    s.insert(a);
+    s.insert(b);
+    s.insert(c);  
+    
+        int count = 0;
+        int sum = 0;
+        
+        while(count!=2)
+        {
+            if(*s.begin()==0)
+            {
+                auto x = s.begin();
+                s.erase(x);
+                count++;
+            }
+            else
+            {
+                auto fir = s.begin();
+            int n1=*fir;
+            s.erase(fir);
+            auto sec = s.end();
+            sec--;
+            int n2 = *sec;
+            s.erase(sec);
+            
+            sum+=1;
+            
+            s.insert(n1-1);
+            s.insert(n2-1); 
+            }
+            
+        }
+        
+  return sum;         
+    }
+};

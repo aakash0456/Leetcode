@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int distributeCandies(vector<int>& candyType) {
+        
+        
+        int n = candyType.size();
+    int can_eat = n/2;
+    
+   set<int> s(candyType.begin(), candyType.end());
+   
+    
+    if(s.size()<can_eat)
+    {
+        return s.size();
+    }
+    else
+    {
+        return can_eat;
+    }
+    
+        
+    }
+};

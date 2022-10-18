@@ -1,0 +1,41 @@
+class Solution {
+public:
+    class WordFreq{
+        public:
+        int freq;
+        string str;
+        WordFreq(int freq, string str){
+            this->freq = freq;
+            this->str = str;
+        }
+        
+    };
+    
+   static bool compare(WordFreq a, WordFreq b){
+        if(a.freq==b.freq) return a.str<b.str;
+        return a.freq> b.freq;
+    }
+    
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        unordered_map<string,int> m;
+        for(auto w: words){
+            m[w]++;
+        }
+        vector<WordFreq> ans;
+        for(auto pr : m){
+            ans.push_back({pr.second, pr.first});
+        }
+        
+        sort(ans.begin(), ans.end(), compare);
+        vector<string> res;
+        
+        for(auto pr : ans){
+            if(!k) break;
+            res.push_back(pr.str);
+            k--;
+        }
+        
+        
+        return res;
+    }
+};

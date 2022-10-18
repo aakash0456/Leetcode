@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        
+        int n = height.size();
+        int water = 0;
+        
+        for(int i=0; i<n-1; i++)
+        {
+            int j =i-1;
+            int maxL=0;
+            while(j>=0)
+            {
+                int h = height[j];
+                maxL = max(h, maxL);
+                j--;
+            }
+            
+            int k =i+1;
+            int maxR=0;
+            while(k<n)
+            {
+                int h = height[k];
+                maxR = max(h, maxR);
+                k++;
+            }
+            
+            int actual_h = min(maxL, maxR);
+            int cur_water = actual_h - height[i];
+            if(cur_water>=0)
+            {
+                water+=cur_water; 
+            }
+           
+            
+        }
+        
+        return water;
+    }
+};
