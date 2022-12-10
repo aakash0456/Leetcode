@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<vector<int>> res;
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<int> nums = {1,2,3,4,5,6,7,8,9};
+        vector<int> ans;
+        func(nums, k, n, 0, ans, 0);
+        
+        return res;
+    }
+    void func(vector<int> &nums, int count, int Tsum, int sum, vector<int> ans, int i){
+        //base
+        if(i==nums.size()){
+            if(ans.size()==count and sum==Tsum) {
+                res.push_back(ans);
+            }
+            return;
+        }
+        
+        //sum find condition
+        ans.push_back(nums[i]);
+        func(nums, count, Tsum, sum+nums[i], ans, i+1);
+        ans.pop_back();
+        func(nums, count, Tsum, sum, ans, i+1);
+        return;
+    }
+    
+};

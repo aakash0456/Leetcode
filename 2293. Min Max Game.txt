@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int minMaxGame(vector<int>& nums) {
+        int n = nums.size();
+        int i=0;
+        while(nums.size()!=1){
+            vector<int> temp;
+            int c = 0;
+            for(int i=0; i<nums.size()/2; i++){
+                int no;
+                if(c==0)  {
+                 no = min(nums[2*i], nums[2*i+1]);
+                 c=1;
+             }
+             else{
+                 no = max(nums[2*i], nums[2*i+1]);
+                 c=0;
+             }
+             temp.push_back(no);
+            }
+           // nums.clear();
+            nums = temp;
+        }
+        return nums[0];
+    }
+};

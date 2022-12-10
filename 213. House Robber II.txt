@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int dp[1000];
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        memset(dp, -1, sizeof(dp));
+        if(nums.size()==1) return nums[0];
+        int a =  func(nums, n-2, 0);
+        memset(dp, -1, sizeof(dp));
+        int b =  func(nums, n-1, 1);
+        //cout<<a<<" "<<b;
+    return max(a, b);
+        //return 0;
+        
+    }
+    int func(vector<int>& nums, int n, int start){
+        //base
+        if(n==start){
+            return nums[n];
+        }
+        if(n<start) return 0;
+        if(dp[n]!=-1) return dp[n];
+        //recursive
+        int l = nums[n] + func(nums, n-2, start);
+        int r = 0 + func(nums, n-1, start);
+        //cout<<l <<" "<<r<<endl;
+        return dp[n] = max(l, r);
+        
+    }
+};

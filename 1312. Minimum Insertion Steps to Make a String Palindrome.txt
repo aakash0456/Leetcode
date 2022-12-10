@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int minInsertions(string s) {
+         
+        string rs = s;
+        reverse(rs.begin(), rs.end());
+        int l1 = s.size();
+        int l2 = rs.size();
+        vector<vector<int>> dp(l1+1, vector<int> (l2, -1));
+        return l1 - func(s, rs, l1-1, l2-1, dp);
+        
+    }
+     int func(string &s1, string &s2, int l1, int l2, vector<vector<int>> &dp){
+        if(l1<0 or l2<0) return 0;
+        if(dp[l1][l2]!=-1) return dp[l1][l2];
+        if(s1[l1]==s2[l2]) return 1+func(s1, s2, l1-1, l2-1, dp);
+        return dp[l1][l2] = max(func(s1, s2,l1-1, l2, dp), func(s1, s2, l1, l2-1, dp));
+        
+    }
+};

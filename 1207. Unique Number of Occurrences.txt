@@ -1,0 +1,12 @@
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        unordered_map<int, int> m, f;
+        for(auto no: arr) m[no]++;
+        for(auto pr: m) f[pr.second]++;
+        for(auto pr: f){
+            if(pr.second>1) return false;
+        }
+        return true;
+    }
+};

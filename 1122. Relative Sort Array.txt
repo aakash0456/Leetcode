@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
+        unordered_map<int,int> m;
+        for(auto no: arr1) m[no]++;
+        vector<int> ans;
+        for(auto no:arr2){
+            if(m.find(no)!=m.end()){
+                while(m[no]--){
+                    ans.push_back(no);
+                }
+            }
+        }
+        vector<int> temp;
+        for(auto no :  arr1){
+            if(find(ans.begin(), ans.end(), no)==ans.end()){
+                temp.push_back(no);
+            }
+        }
+        sort(temp.begin(), temp.end());
+        for(auto no: temp) ans.push_back(no);
+        return ans;
+    }
+};

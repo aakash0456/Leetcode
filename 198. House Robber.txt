@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int dp[1000];
+    int rob(vector<int>& nums) {
+        memset(dp, -1, sizeof(dp));
+        int n = nums.size();
+        
+        return func(nums, n-1);
+    }
+    int func(vector<int>& nums, int n){
+        //base
+        if(n==0) return nums[n];
+        if(n<0) return 0;
+        if(dp[n]!=-1) return dp[n];
+        //recursive
+        int l = nums[n] + func(nums, n-2);
+        int r = func(nums, n-1);
+        
+        int maxno = max(l, r);
+        return dp[n] = maxno;
+    }
+};

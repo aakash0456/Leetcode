@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int minimumOperations(vector<int>& nums) {
+        
+        priority_queue<int, vector<int>, greater<int>> pq(nums.begin(), nums.end());
+          int move = 0, curr = 0;
+        while(!pq.empty()){
+            if(pq.top() != curr){
+                move++;
+                curr = pq.top();
+            }
+            pq.pop();
+        }
+        return move;
+    }
+};

@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int change(int amount, vector<int>& coins) {
+        int n = coins.size();
+         vector<vector<int>> dp(n+1, vector<int>(amount+1, -1));
+        int ans  = func(coins, amount, n-1, dp);
+        return ans;
+        
+    }
+int func(vector<int> &coins, int amount, int n, vector<vector<int>> &dp){
+    //base
+    if(n==0){
+        if(coins[n]==amount) return 1;
+        else if(amount%coins[n]==0) return 1;
+        else return 0;
+    }
+    if(dp[n][amount]!=-1) return dp[n][amount];
+    //recursive
+    int notpick = func(coins, amount, n-1, dp);
+    int pick = 0;
+    if(coins[n]<=amount){
+        pick = func(coins, amount-coins[n],  n, dp);
+    }
+
+    return dp[n][amount]=pick+notpick;
+}
+
+};

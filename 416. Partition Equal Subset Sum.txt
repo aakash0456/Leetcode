@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+         int totalSum=0;
+        for(auto n: nums) totalSum+=n;
+        if(totalSum%2!=0) return false;
+        vector<vector<int>> dp(nums.size(), vector<int>(totalSum, -1));
+        return func(nums, 0, totalSum/2, dp);
+        
+    }
+    bool func(vector<int> nums, int i, int sum, vector<vector<int>> &dp){
+         if(sum < 0 or i >=nums.size()) return false;
+        if(sum == 0) return true;
+        if(dp[i][sum]!=-1) return dp[i][sum];
+         return dp[i][sum] = func(nums, i+1, sum-nums[i], dp) or func(nums, i+1, sum, dp);
+    }
+};

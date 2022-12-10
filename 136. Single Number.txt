@@ -1,0 +1,8 @@
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int xo = 0;
+        for(auto no : nums) xo^=no;
+        return xo;
+    }
+};

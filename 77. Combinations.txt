@@ -1,0 +1,31 @@
+class Solution {
+public:
+     
+    vector<vector<int>> combine(int n, int k) {
+        vector<int> nums;
+        vector<vector<int>> res;
+        for(int i=1; i<=n; i++) nums.push_back(i);
+        vector<int> ans;
+        func(nums, k, ans, 0, res, n);
+        
+        return res;
+    }
+    
+     void func(vector<int> &nums, int count, vector<int> &ans, int i, vector<vector<int>> &res, int n){
+        //base
+         //if(ans.size() > count) return;
+        if(i>=n){
+            if(ans.size()==count) {
+                res.push_back(ans);
+            }
+            return;
+        }
+      
+        //sum find condition
+        ans.push_back(nums[i]);
+        func(nums, count, ans, i+1, res, n);
+        ans.pop_back();
+        func(nums, count, ans, i+1, res, n);
+        return;
+    }
+};

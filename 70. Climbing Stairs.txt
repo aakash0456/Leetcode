@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int dp[100]={0};
+    
+    int climbStairs(int n) {
+       //memset(dp, -1, sizeof(dp));
+        int x = func(n);
+        return x;
+    }
+   int  func(int n){
+        
+        //base
+        if(n==0) return 1;
+        else if(n==1) return 1;
+        if(dp[n]!= 0) return dp[n];
+        //condition
+       // int l =  climbStairs(n-1);
+       // int  r = climbStairs(n-2);
+       //  dp[n] = l+r;
+       dp[n] = climbStairs(n-1)+climbStairs(n-2);
+        return dp[n];
+        
+    
+   }
+};

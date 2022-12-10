@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string sortSentence(string s) {
+        stringstream ss(s);
+        string temp;
+        //vector<string> ans;
+        unordered_map<int, string> m;
+        while(ss>>temp){
+            string str = temp.substr(0, temp.size()-1);
+            int no = stoi(temp.substr(temp.size()-1, 1));
+            m[no] = str;
+        }
+        string ans;
+        for(int i=1; i<=m.size(); i++){
+            if(m.find(i)!=m.end()){
+               ans+=m[i];
+                ans+=" ";
+            }
+        }
+        return ans.substr(0, ans.size()-1);
+    }
+};

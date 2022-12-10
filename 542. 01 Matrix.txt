@@ -1,0 +1,43 @@
+class Solution {
+public:
+     bool check(vector<vector<int>>& mat, int i, int j){
+            if(i>=0 and i<mat.size() and j>=0 and j<mat[0].size()) return true;
+            return false;
+        }
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        int m = mat.size();
+        int n = mat[0].size();
+        vector<vector<int>> vis(m, vector<int>(n, 0));
+        vector<vector<int>> dist(m, vector<int>(n, 0));
+        queue<pair<pair<int, int>, int>> q;
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(mat[i][j]==0){
+                    vis[i][j] = 1;
+                     q.push({{i,j}, 0});
+                }
+            }
+    }
+     
+     while(!q.empty()){
+         int row = q.front().first.first;
+         int col = q.front().first.second;
+         int dis = q.front().second;
+         q.pop();
+         dist[row][col] = dis;
+         int dx[] = {-1, 0, 1, 0};
+         int dy[] = {0, 1, 0, -1};
+         for(int idx = 0; idx<4; idx++){
+            int new_idx = row+dx[idx];
+            int new_idy = col+dy[idx];
+            if(check(mat, new_idx, new_idy) and vis[new_idx][new_idy]==0 and mat[new_idx][new_idy]==1){
+                vis[new_idx][new_idy] = 1;
+                q.push({{new_idx, new_idy}, dis+1});
+            }
+            
+        }
+     }
+  return dist;
+       
+ }
+};

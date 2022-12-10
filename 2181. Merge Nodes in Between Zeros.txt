@@ -1,0 +1,41 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeNodes(ListNode* head) {
+        
+        int sum = 0;
+        ListNode *newList = NULL;
+        ListNode *nhead = NULL;
+        while(head){
+            sum+=head->val;
+            if(head->val==0){
+                if(sum!=0){
+                 if(newList==NULL) {
+                     newList = new ListNode(sum);
+                     nhead = newList;
+                 }
+                 else{
+                     ListNode *temp = new ListNode(sum);
+                     nhead->next = temp;
+                     nhead = temp;
+                 } 
+                }
+                sum = 0;
+            }
+            
+            head= head->next;
+            
+        }
+        
+        return newList;
+    }
+};

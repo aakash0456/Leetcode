@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int minDistance(string word1, string word2) {
+        int l1 = word1.size();
+        int l2 = word2.size();
+        vector<vector<int>> dp(l1+1, vector<int> (l2, -1));
+        return l1 + l2 - 2*func(word1, word2, l1-1, l2-1, dp);
+        
+    }
+    
+     int func(string &s1, string &s2, int l1, int l2, vector<vector<int>> &dp){
+        if(l1<0 or l2<0) return 0;
+        if(dp[l1][l2]!=-1) return dp[l1][l2];
+        if(s1[l1]==s2[l2]) return 1+func(s1, s2, l1-1, l2-1, dp);
+        return dp[l1][l2] = max(func(s1, s2,l1-1, l2, dp), func(s1, s2, l1, l2-1, dp));
+        
+    }
+};
